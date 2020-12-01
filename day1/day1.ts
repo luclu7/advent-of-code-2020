@@ -7,21 +7,21 @@ const arrayNumbers = text.split("\n").map(x=>+x)
 const state = [false, false]
 
 // yeah nested loops are bad, but it works ¯\_(ツ)_/¯
-function get2020(arrayNumbers){
-    arrayNumbers.forEach((element) => {
+function get2020(array: number[], target: number){
+    array.forEach((element) => {
         const currentNumber1: number = element
-        for (const currentNumber2 in arrayNumbers) {
-            if(currentNumber1+arrayNumbers[currentNumber2] === 2020 && state[0]==false) {
+        for (const currentNumber2 in array) {
+            if(currentNumber1+array[currentNumber2] === target && state[0]==false) {
                 // step 1
                 // yay
                 console.log("(2 levels) Found it!")
-                console.log(currentNumber1*arrayNumbers[currentNumber2]+"!")
+                console.log(currentNumber1*array[currentNumber2]+"!")
                 state[0]=true
             }
-            for (const currentNumber3 in arrayNumbers) {
-                if(currentNumber1+arrayNumbers[currentNumber2]+arrayNumbers[currentNumber3] === 2020 && state[0] == true && state[1]==false) {
-                    console.log("(3 levels) OwO, found it!")
-                    console.log(currentNumber1*arrayNumbers[currentNumber2]*arrayNumbers[currentNumber3])
+            for (const currentNumber3 in array) {
+                if(currentNumber1+array[currentNumber2]+array[currentNumber3] === target && state[0] == true && state[1]==false) {
+                    console.log("(3 levels) Found it!")
+                    console.log(currentNumber1*array[currentNumber2]*array[currentNumber3])
                     state[1]=true
                 }
             }
@@ -29,4 +29,4 @@ function get2020(arrayNumbers){
  })
 }
 
-get2020(arrayNumbers)
+get2020(arrayNumbers, 2020)
