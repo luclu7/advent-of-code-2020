@@ -3,3 +3,4 @@ Well the title is pretty self-explanatory. I'm like awful at code, so solutions 
 
 ## Current days
 * [Day 1](day1/day1.ts)
+* [Day 2](day2/day2.ts)
