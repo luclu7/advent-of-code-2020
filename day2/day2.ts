@@ -19,7 +19,7 @@ class passwordChecker {
         console.log("Hello, " + this.password);
     }
 
-    match() {
+    matchPart1() {
         const numberOfMatches: number = (this.password.match(new RegExp(this.letterToFind, "g")) || []).length;
         if (numberOfMatches <= this.maximumMatch && numberOfMatches >= this.minimumMatch){
             console.log("isoké")
@@ -29,26 +29,53 @@ class passwordChecker {
             return false
         }
     }
+    matchPart2(){
+        const firstMatch: boolean = this.password[this.minimumMatch-1] == this.letterToFind
+        const secondMatch: boolean = this.password[this.maximumMatch-1] == this.letterToFind
+        if(firstMatch !== secondMatch){
+            console.log("Good")
+            return true
+        }
+        else {
+            console.log("Bad")
+            return false
+        }
+    }
 }
 
-let password: passwordChecker = new passwordChecker("owo", "o", 1,2)
-console.log(password.match())
+function part1(){
+    const reader = rd.createInterface(fs.createReadStream("input.txt"))
+    let numberOfValidPasswords: number = 0;
 
+    reader.on("line", (l: string) => {
+        let currentLine = l.split(/[- :]+/);
+        let password: passwordChecker = new passwordChecker(currentLine[3], currentLine[2], parseInt(currentLine[0]), parseInt(currentLine[1]))
+        if(password.matchPart1()){
+            numberOfValidPasswords++;
+        }
+    })
 
-var reader = rd.createInterface(fs.createReadStream("input.txt"))
+    reader.on("close", () => {
+        console.log("(1) Done! Found "+numberOfValidPasswords.toString()+" valid passwords.")
+    })
+}
 
-let numberOfValidPasswords: number = 0;
+function part2() {
+    const reader = rd.createInterface(fs.createReadStream("input.txt"))
+    let numberOfValidPasswords: number = 0;
 
-reader.on("line", (l: string) => {
-    let currentLine = l.split(/[- :]+/);
-    console.log(currentLine)
-    let password: passwordChecker = new passwordChecker(currentLine[3], currentLine[2], parseInt(currentLine[0]), parseInt(currentLine[1]))
-    if(password.match()){
-        numberOfValidPasswords++;
-    }
-})
+    reader.on("line", (l: string) => {
+        let currentLine = l.split(/[- :]+/);
+        let password: passwordChecker = new passwordChecker(currentLine[3], currentLine[2], parseInt(currentLine[0]), parseInt(currentLine[1]))
+        if(password.matchPart2()){
+            numberOfValidPasswords++;
+        }
+    })
 
-reader.on("close", () => {
-    console.log("Done! Found "+numberOfValidPasswords.toString()+" valid passwords.")
-})
+    reader.on("close", () => {
+        console.log("(2) Done! Found "+numberOfValidPasswords.toString()+" valid passwords.")
+    })
+}
 
+part1()
+part2()
