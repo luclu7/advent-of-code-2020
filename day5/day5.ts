@@ -52,7 +52,7 @@ function part1(){
         } else {
             const seatID = rowNumber*8+columnNumber
             seatTaken = seatTaken.filter(e => e !== seatID)
-            console.log("Boarding pass "+chalk.green(word)+" | Row: "+chalk.blue(rowNumber.toString())+", column: "+chalk.cyan(columnNumber.toString())+", Seat ID: "+chalk.magenta(seatID.toString()))
+            console.log("Boarding pass "+chalk.green(word)+" | "+chalk.blue(rowNumber.toString())+"×"+chalk.yellow("8")+"+"+chalk.cyan(columnNumber.toString())+"="+chalk.magenta(seatID.toString()))
             if(seatID > maximumSeatID){
                 maximumSeatID=seatID
             }
@@ -65,13 +65,13 @@ function part1(){
         column = [0, 7];
         calculateRange(element)
     })
-
+    console.log("                      "+chalk.blue("Row")+"×"+chalk.yellow("8")+"+"+chalk.cyan("column")+"="+chalk.magenta("SeatID"))
     console.log("\r\n(1) The maximum Seat ID is: " + chalk.magenta(maximumSeatID.toString()))
 }
 
 part1()
 seatTaken.forEach(element => {
-    if(element >= 100 && element <= 900){
-        console.log("(2) Seat ID: " + chalk.magenta(element.toString()))
+    if(!seatTaken.includes(element-1) && !seatTaken.includes(element+1)){
+        console.log("(2) Your Seat ID is: " + chalk.magenta(element.toString()))
     }
 })
