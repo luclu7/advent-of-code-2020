@@ -5,3 +5,4 @@ Well the title is pretty self-explanatory. I'm like awful at code, so solutions 
 * [Day 1](day1/day1.ts)
 * [Day 2](day2/day2.ts)
 * [Day 3](day3/day3.ts)
+* [Day 4](day4/day4.ts)
