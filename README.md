@@ -6,3 +6,4 @@ Well the title is pretty self-explanatory. I'm like awful at code, so solutions 
 * [Day 2](day2/day2.ts)
 * [Day 3](day3/day3.ts)
 * [Day 4](day4/day4.ts)
+* [Day 5](day5/day5.ts)
