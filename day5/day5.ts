@@ -52,7 +52,7 @@ function part1(){
         } else {
             const seatID = rowNumber*8+columnNumber
             seatTaken = seatTaken.filter(e => e !== seatID)
-            console.log("Boarding pass "+chalk.green(word)+" | "+chalk.blue(rowNumber.toString())+"×"+chalk.yellow("8")+"+"+chalk.cyan(columnNumber.toString())+"="+chalk.magenta(seatID.toString()))
+            console.log("Boarding pass "+chalk.green(word.slice(0, -3))+chalk.red(word.substring(word.length - 3))+" | "+chalk.blue(rowNumber.toString())+"×"+chalk.yellow("8")+"+"+chalk.cyan(columnNumber.toString())+"="+chalk.magenta(seatID.toString()))
             if(seatID > maximumSeatID){
                 maximumSeatID=seatID
             }
